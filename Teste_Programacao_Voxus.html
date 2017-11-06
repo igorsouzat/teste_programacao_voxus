@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Teste de Programação</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <style>
+            div{
+                width: 500px;
+                margin: 0 auto;
+                background: #1d4ce6;
+                border-radius: 20px;
+                height: auto;
+                padding: 30px;
+            }
+            form{
+                width: 70%;
+                margin: 0 auto;
+            }
+            
+            #btPush, #btPop, #btMin{
+                border: none;
+                background: #fff;
+                color: #1d4ce6;
+                border-radius: 5px;
+                width: 30%;
+                height: 30px;
+                box-sizing: border-box;
+                font-size: 16pt;
+                box-shadow: #ccc 0 5px 0; 
+            }
+                        
+            #btPush, #btPop{
+                margin-right: 3.8%;
+            }
+            
+            #valor{
+                width: 100%;
+                border: none;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            #visor{
+                width: 100%;
+                height: auto;
+                margin: 0 auto;
+                background: #fff;
+                margin-top: 30px;
+                color: #1d4ce6;
+                text-align: center;
+            }
+        </style>
+        <div>
+            <form>
+                <input type="text" id="valor"><br>
+                <input type="button" value="Push" id="btPush">
+                <input type="button" value="Pop" id="btPop">
+                <input type="button" value="Min" id="btMin">
+                <input type="text" id="visor">
+            </form>
+        </div>
+        
+        <script>
+            window.onload = document.getElementById("valor").focus();
+            //Criando variáveis para os botões
+            var btnPush = document.getElementById("btPush");
+            var btnPop = document.getElementById("btPop");
+            var btnMin = document.getElementById("btMin");
+            
+            //Criando pilha e variaveis
+            var pTopo = -1;
+            var pilha = new Array();
+            pilha = [];
+            var menor;
+            
+            //Aplicando as funções para os botões
+            //BOTÃO DE PUSH
+            btnPush.onclick = function(){
+                
+                if (document.getElementById("valor").value == ""){
+                    alert("Insira algum valor!");
+                    document.getElementById("valor").focus();
+                }else{
+                    pTopo++;
+                    pilha[pTopo] = document.getElementById("valor").value;
+                    document.getElementById("visor").value = pilha;
+                    document.getElementById("valor").value = "";
+                    document.getElementById("valor").focus();
+                };
+            };
+            
+            //BOTÃO DE POP
+            btnPop.onclick = function(){
+                if(pTopo == -1){
+                    alert("Pilha está vazia, adicione algum valor!");
+                    document.getElementById("valor").focus();
+                }else{
+                    alert(pilha[pTopo]);
+                    pTopo--;
+                    pilha.pop();
+                    document.getElementById("visor").value = pilha;
+                }
+            }
+            
+            // BOTÃO MIN
+            btnMin.onclick = function(){
+                if(pTopo == -1){
+                    alert("Pilha está vazia, adicione algum valor!");
+                    document.getElementById("valor").focus();
+                }else{
+                    menor = parseInt(pilha[0]);
+
+                    for(var i = 0;i <= pTopo;i++){                    
+                        if (pilha[i] < menor){
+                            menor = parseInt(pilha[i]);
+                        }
+                    }
+                
+                    alert(menor);
+                }
+            }
+        </script>
+    </body>
+</html>
